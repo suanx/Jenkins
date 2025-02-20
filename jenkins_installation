@@ -1,0 +1,25 @@
+1.) if you want to instal with shell-script format only direct copy and paste on linux machine with "filename".sh extention and run with ./"filename.sh"2.) To run noramlly copy and paste each commands mentioned below one by one ( dont add #!/bin/bash)
+3.) Its only basic steps to follow >>It may change over time so check jenkins.io
+4.) The commands below is derived from LTS version under RedHat linux, check before prompting
+5.) In companies they may use weekly release version, based on their project
+6.) t2.micro linux not supported because of 1GiB memory
+
+
+
+#!/bin/bash  
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo \ 
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+sudo yum upgrade -y
+
+sudo yum install java-17 -y
+sudo yum install jenkins -y 
+
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+
