@@ -6,20 +6,33 @@
 
 
 
+_________________________________________________________________________________________________________
 #!/bin/bash  
 
-sudo wget -O /etc/yum.repos.d/jenkins.repo \ 
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo
-
+# Add Jenkins repo
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 
+# Update package list
 sudo yum upgrade -y
 
+# Install Java 17
 sudo yum install java-17 -y
+
+# Verify if Jenkins repo is added correctly
+sudo yum clean all
+sudo yum repolist all | grep jenkins
+
+# Install Jenkins
 sudo yum install jenkins -y 
 
+# Reload systemd manager configuration
 sudo systemctl daemon-reload
+
+# Enable and start Jenkins service
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
-sudo systemctl status jenkins
 
+# Check Jenkins service status
+sudo systemctl status jenkins
+___________________________________________________________________________________________________________
