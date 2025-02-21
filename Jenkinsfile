@@ -25,4 +25,10 @@ pipeline {
 stage('memory usage'){
        steps{
            sh 'free'
+}}
+
+stage('CPU Detailes'){
+       steps{
+           sh 'lscpu'
+
 }}}}
