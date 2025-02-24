@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Website for Jenkins</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+    <title>Modern Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Jenkins Demo Website</h1>
-        <p>This is a simple static website to practice Jenkins deployment.</p>
-    </div>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <h2>Your Modern Web Solution</h2>
+        <p>We provide top-notch services for your business growth.</p>
+        <button onclick="showAlert()">Get Started</button>
+    </section>
+    
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-box">
+            <h3>Web Development</h3>
+            <p>Responsive and modern websites tailored to your needs.</p>
+        </div>
+        <div class="service-box">
+            <h3>SEO Optimization</h3>
+            <p>Increase your online presence with our SEO strategies.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@example.com</p>
+        <p>Phone: +123 456 7890</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Modern Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-
 
