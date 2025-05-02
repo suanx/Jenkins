@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE = "suanx/myapp"
+        HOST = "ubuntu@pubipaddress"
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git url: 'https://github.com/........', branch: 'main'
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                sh "docker build -t $IMAGE ."
+            }
+        }
+
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                }
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh "docker push $IMAGE"
+            }
+        }
+        stage('Deploy to EC2') {
+            steps {
+                sshagent(['ec2-key']) {
+                    sh "ssh -o StrictHostKeyChecking=no $HOST 'docker pull $IMAGE && docker run -d -p 80:80 $IMAGE'"
+                }
+            }
+        }
+    }
+}
+//Requirements:
+//Replace: 'dockerhub-creds' with your DockerHub Jenkins credentials ID. 'ec2-key' with the Jenkins SSH key credentials ID for your EC2.
+//NOTE:Docker must be running on your EC2 instance.
+
